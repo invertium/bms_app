@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   testWidgets('renders the BLE scan dashboard shell', (
     WidgetTester tester,
   ) async {
+    SharedPreferences.setMockInitialValues({});
     await tester.pumpWidget(
       ProviderScope(
         overrides: [
@@ -26,6 +28,7 @@ void main() {
     expect(find.text('Ready to scan'), findsOneWidget);
     expect(find.text('Scan'), findsOneWidget);
     expect(find.text('Show all devices'), findsOneWidget);
+    expect(find.text('Try demo mode'), findsOneWidget);
     expect(find.byIcon(Icons.bluetooth_searching), findsOneWidget);
   });
 }
