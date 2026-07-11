@@ -1,0 +1,33 @@
+services:
+  flutter:
+    build:
+      context: .
+    user: "${UID:-1000}:${GID:-1000}"
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      # Keep the debug signing keystore stable across container runs so
+      # rebuilt APKs stay installable over the previous version. Gradle
+      # resolves it via Java's user.home (/home/ubuntu for uid 1000), not
+      # $HOME.
+      - ./.android:/home/ubuntu/.android
+    environment:
+      HOME: /tmp
+      PUB_CACHE: /workspace/.dart_tool/pub-cache
+      GRADLE_USER_HOME: /workspace/.gradle
+    command: flutter --version
+
+  adb:
+    build:
+      context: .
+    working_dir: /workspace
+    privileged: true
+    network_mode: host
+    volumes:
+      - .:/workspace
+      - /dev/bus/usb:/dev/bus/usb
+      - "${HOME}/.android:/root/.android"
+    environment:
+      PUB_CACHE: /workspace/.dart_tool/pub-cache
+      GRADLE_USER_HOME: /workspace/.gradle
+    command: adb devices
