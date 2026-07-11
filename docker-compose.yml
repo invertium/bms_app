@@ -17,6 +17,20 @@ services:
       GRADLE_USER_HOME: /workspace/.gradle
     command: flutter --version
 
+  # Headless Android emulator for UI verification without a phone.
+  # Start with: make emulator (never starts implicitly).
+  emulator:
+    image: budtmo/docker-android:emulator_13.0
+    profiles: ["emulator"]
+    devices:
+      - /dev/kvm
+    ports:
+      - "127.0.0.1:5555:5555" # adb
+      - "127.0.0.1:6080:6080" # web VNC viewer
+    environment:
+      EMULATOR_DEVICE: "Samsung Galaxy S10"
+      WEB_VNC: "true"
+
   adb:
     build:
       context: .

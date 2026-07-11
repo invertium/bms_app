@@ -2,7 +2,14 @@ COMPOSE := docker compose
 FLUTTER := $(COMPOSE) run --rm --build flutter
 ADB := $(COMPOSE) run --rm --build adb
 
-.PHONY: doctor deps analyze test apk clean devices install-debug shell
+.PHONY: doctor deps analyze test apk clean devices install-debug shell emulator emulator-stop
+
+emulator:
+	$(COMPOSE) --profile emulator up -d emulator
+	@echo "Wait for boot, then: adb connect localhost:5555"
+
+emulator-stop:
+	$(COMPOSE) --profile emulator down
 
 doctor:
 	$(FLUTTER) flutter doctor -v
