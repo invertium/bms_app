@@ -6,19 +6,16 @@ testable against demo mode).
 
 ## Next — settings & quality of life
 
-- **Settings screen** (new tab or app-bar entry, `shared_preferences` backed):
-  - Temperature unit (°C / °F) and cell voltage unit (V / mV).
-  - Poll interval (1–5 s) and history window (30 min – 4 h).
-  - Custom pack name (shown instead of the BLE device name).
-  - Keep-screen-awake toggle while connected.
-  - "Advanced mode" master switch gating the riskier features below.
-- **Alert thresholds with in-app banners**: SOC low/high, cell delta, pack
-  temperature; configurable in settings, evaluated on every telemetry frame.
-- **Charge/discharge session stats**: integrate current over time into
-  Ah/Wh per session ("charged 8.2 Ah / 274 Wh in 1 h 40 m"), shown on the
-  dashboard while current flows.
+- ~~**Settings screen**~~ *(shipped in 1.1.0: units, poll rate, history
+  window, pack name, keep-awake)*
+- ~~**Alert thresholds with in-app banners**~~ *(shipped in 1.1.0: SOC
+  low/high, cell delta, temperature)*
+- ~~**Charge/discharge session stats**~~ *(shipped in 1.1.0: Ah/Wh per
+  session on the dashboard)*
 - **Graph polish**: pinch-zoom + pan on the monitor chart, long-press to
   compare two points, optional min/max band per pixel when downsampling.
+- **"Advanced mode" settings switch** gating the riskier features below
+  (separate FET toggles, config viewer).
 
 ## Then — background & data
 
