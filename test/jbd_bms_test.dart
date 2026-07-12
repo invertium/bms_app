@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 
-import 'package:bms_app/jbd_bms.dart';
+import 'package:bms_dash/jbd_bms.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 /// Basic-info response frame for a 13S pack: 48.10 V, -1.50 A, 45.00 of

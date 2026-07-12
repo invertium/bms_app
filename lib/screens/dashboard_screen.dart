@@ -29,13 +29,54 @@ class DashboardScreen extends ConsumerWidget {
                 state.pendingMosfetToggle ?? telemetry?.mosfetsOn ?? false,
             isTogglePending: state.pendingMosfetToggle != null,
             onMosfetsChanged: (enabled) =>
-                ref.read(bmsControllerProvider.notifier).setMosfets(enabled),
+                _onMosfetsChanged(context, ref, enabled),
           ),
           const SizedBox(height: 16),
           _DeviceInfoCard(state: state),
         ],
       ),
     );
+  }
+
+  /// Switching the FETs off cuts the pack from charger and load, so it asks
+  /// for confirmation; switching back on does not.
+  Future<void> _onMosfetsChanged(
+    BuildContext context,
+    WidgetRef ref,
+    bool enabled,
+  ) async {
+    if (!enabled) {
+      final confirmed = await showDialog<bool>(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: BmsColors.card,
+          title: const Text('Turn MOSFETs off?'),
+          content: const Text(
+            'This disconnects the pack: charging stops and anything powered '
+            'by the battery loses power until you switch back on.',
+            style: TextStyle(color: BmsColors.textSecondary),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context, false),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              style: FilledButton.styleFrom(
+                backgroundColor: BmsColors.warning,
+                foregroundColor: Colors.white,
+              ),
+              onPressed: () => Navigator.pop(context, true),
+              child: const Text('Turn off'),
+            ),
+          ],
+        ),
+      );
+      if (confirmed != true) {
+        return;
+      }
+    }
+    await ref.read(bmsControllerProvider.notifier).setMosfets(enabled);
   }
 }
 

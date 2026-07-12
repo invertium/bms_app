@@ -309,6 +309,13 @@ class JbdBmsSession implements BmsSession {
   /// Basic info and cell voltages alternate on this tick, so each register
   /// still refreshes every two ticks.
   static const Duration _pollInterval = Duration(seconds: 1);
+
+  /// The BLE link can stay "connected" while the BMS has stopped answering
+  /// (e.g. it went to sleep or moved out of range without a clean
+  /// disconnect). If no valid frame arrives for this long despite polls
+  /// every second, the session tears itself down so the UI does not show
+  /// frozen values as live data.
+  static const Duration _staleTimeout = Duration(seconds: 12);
   static const Duration _mosfetConfirmTimeout = Duration(milliseconds: 2500);
   static const Duration _mosfetConfirmReadInterval =
       Duration(milliseconds: 500);
@@ -326,6 +333,7 @@ class JbdBmsSession implements BmsSession {
   StreamSubscription<List<int>>? _notifySubscription;
   StreamSubscription<BluetoothConnectionState>? _connectionSubscription;
   Timer? _pollTimer;
+  Timer? _staleTimer;
   int _pollTick = 0;
   String? _hardwareVersion;
   bool _disposed = false;
@@ -444,6 +452,7 @@ class JbdBmsSession implements BmsSession {
     }
     _disposed = true;
     _pollTimer?.cancel();
+    _staleTimer?.cancel();
     await _notifySubscription?.cancel();
     await _connectionSubscription?.cancel();
     await _basicInfoController.close();
@@ -459,8 +468,17 @@ class JbdBmsSession implements BmsSession {
       }
     });
     _pollTimer = Timer.periodic(_pollInterval, (_) => _onPollTick());
+    _restartStaleTimer();
     await _requestRead(JbdProtocol.hardwareVersionRegister);
     await _requestRead(JbdProtocol.basicInfoRegister);
+  }
+
+  void _restartStaleTimer() {
+    _staleTimer?.cancel();
+    if (_disposed) {
+      return;
+    }
+    _staleTimer = Timer(_staleTimeout, () => unawaited(disconnect()));
   }
 
   void _onPollTick() {
@@ -503,6 +521,7 @@ class JbdBmsSession implements BmsSession {
       if (payload == null) {
         continue;
       }
+      _restartStaleTimer();
       switch (register) {
         case JbdProtocol.basicInfoRegister:
           final info = JbdBasicInfo.fromPayload(payload);
@@ -511,7 +530,13 @@ class JbdBmsSession implements BmsSession {
           }
         case JbdProtocol.cellVoltagesRegister:
           final cells = JbdProtocol.parseCellVoltages(payload);
-          if (cells.isNotEmpty && !_cellVoltagesController.isClosed) {
+          // A frame can pass the checksum and still carry nonsense (e.g. a
+          // BMS variant answering with a different layout); drop anything
+          // outside what a JBD pack can physically report.
+          final plausible = cells.isNotEmpty &&
+              cells.length <= 32 &&
+              cells.every((v) => v >= 0 && v < 6);
+          if (plausible && !_cellVoltagesController.isClosed) {
             _cellVoltagesController.add(cells);
           }
         case JbdProtocol.hardwareVersionRegister:

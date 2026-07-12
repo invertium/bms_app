@@ -1,4 +1,4 @@
-package com.jbdbms.bms_app
+package io.github.invertium.bmsdash
 
 import io.flutter.embedding.android.FlutterActivity
 

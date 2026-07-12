@@ -1,6 +1,6 @@
-import 'package:bms_app/bms_state.dart';
-import 'package:bms_app/demo_bms.dart';
-import 'package:bms_app/jbd_bms.dart';
+import 'package:bms_dash/bms_state.dart';
+import 'package:bms_dash/demo_bms.dart';
+import 'package:bms_dash/jbd_bms.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 TelemetrySample _sample(int second) => TelemetrySample(

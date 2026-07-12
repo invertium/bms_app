@@ -1,4 +1,4 @@
-import 'package:bms_app/main.dart';
+import 'package:bms_dash/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,7 +22,7 @@ void main() {
     );
     await tester.pump();
 
-    expect(find.text('JBD BMS'), findsOneWidget);
+    expect(find.text('BMS Dash'), findsOneWidget);
     expect(find.text('Disconnected'), findsOneWidget);
     expect(find.text('BT on'), findsOneWidget);
     expect(find.text('Ready to scan'), findsOneWidget);

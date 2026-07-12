@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../about.dart';
 import '../ble.dart';
 import '../bms_state.dart';
 import '../theme.dart';
@@ -196,10 +197,15 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
           children: [
             GradientBoltMark(),
             SizedBox(width: 6),
-            Text('JBD BMS'),
+            Text('BMS Dash'),
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: 'About & support',
+            onPressed: () => showAboutBmsDialog(context),
+            icon: const Icon(Icons.info_outline),
+          ),
           IconButton(
             tooltip: 'Refresh scan',
             onPressed: _isScanning || isBusy ? null : _startScan,
@@ -304,16 +310,37 @@ class _ConnectScreenState extends ConsumerState<ConnectScreen> {
                   ),
                 ),
                 Center(
-                  child: TextButton(
-                    onPressed: isBusy
-                        ? null
-                        : () => ref
-                            .read(bmsControllerProvider.notifier)
-                            .connectDemo(),
-                    child: const Text(
-                      'Try demo mode',
-                      style: TextStyle(color: BmsColors.textMuted),
-                    ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextButton(
+                        onPressed: isBusy
+                            ? null
+                            : () => ref
+                                .read(bmsControllerProvider.notifier)
+                                .connectDemo(),
+                        child: const Text(
+                          'Try demo mode',
+                          style: TextStyle(color: BmsColors.textMuted),
+                        ),
+                      ),
+                      const Text(
+                        '•',
+                        style: TextStyle(color: BmsColors.textMuted),
+                      ),
+                      TextButton.icon(
+                        onPressed: () => showAboutBmsDialog(context),
+                        icon: const Icon(
+                          Icons.coffee,
+                          size: 16,
+                          color: BmsColors.textMuted,
+                        ),
+                        label: const Text(
+                          'Support',
+                          style: TextStyle(color: BmsColors.textMuted),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],

@@ -1,6 +1,9 @@
+import 'dart:ui' show PlatformDispatcher;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'about.dart';
 import 'bms_state.dart';
 import 'screens/cells_screen.dart';
 import 'screens/connect_screen.dart';
@@ -15,6 +18,14 @@ export 'jbd_bms.dart';
 export 'theme.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // BLE plugins can surface transient platform errors on detached futures
+  // (e.g. a write racing a disconnect). Log them instead of letting an
+  // uncaught async error take down the release app.
+  PlatformDispatcher.instance.onError = (error, stack) {
+    debugPrint('Uncaught error: $error\n$stack');
+    return true;
+  };
   runApp(const ProviderScope(child: BmsApp()));
 }
 
@@ -24,7 +35,7 @@ class BmsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'JBD BMS',
+      title: 'BMS Dash',
       debugShowCheckedModeBanner: false,
       theme: buildBmsTheme(),
       home: const _Home(),
@@ -67,7 +78,7 @@ class _ConnectedShellState extends ConsumerState<ConnectedShell> {
             const SizedBox(width: 6),
             Flexible(
               child: Text(
-                state.deviceName ?? 'JBD BMS',
+                state.deviceName ?? 'BMS Dash',
                 overflow: TextOverflow.ellipsis,
               ),
             ),
@@ -94,6 +105,11 @@ class _ConnectedShellState extends ConsumerState<ConnectedShell> {
           ],
         ),
         actions: [
+          IconButton(
+            tooltip: 'About & support',
+            onPressed: () => showAboutBmsDialog(context),
+            icon: const Icon(Icons.info_outline),
+          ),
           IconButton(
             tooltip: 'Disconnect',
             onPressed: () =>
