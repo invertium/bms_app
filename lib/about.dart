@@ -64,7 +64,7 @@ class _AboutDialog extends StatelessWidget {
             ),
             const SizedBox(height: 14),
             Text(
-              'Free, open-source monitoring and control for JBD / Xiaoxiang '
+              'Free monitoring and control for JBD / Xiaoxiang '
               'smart BMS over Bluetooth LE.',
               textAlign: TextAlign.center,
               style: theme.textTheme.bodySmall

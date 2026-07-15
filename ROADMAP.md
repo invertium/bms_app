@@ -46,8 +46,9 @@ testable against demo mode).
 - **Localization**: extract strings, ship German first.
 - **iOS build**: `flutter_blue_plus` already supports iOS; needs signing,
   permission plists, and a TestFlight pipeline.
-- **Distribution**: F-Droid inclusion (pairs well with the
-  buy-me-a-coffee model) and/or Play Store.
+- **Distribution**: Play Store (in progress). F-Droid is out — it requires
+  an OSI-approved license and the project moved to a source-available,
+  noncommercial one after 1.0.0.
 
 ## Explicitly out of scope
 

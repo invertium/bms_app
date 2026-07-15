@@ -1,21 +1,54 @@
-MIT License
+BMS Dash Source-Available License 1.0
 
 Copyright (c) 2026 Julian (invertium)
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Grant
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Permission is granted, free of charge, to any person obtaining a copy of
+this software and its source code (the "Software") to:
+
+  1. use the Software for personal, educational, and other noncommercial
+     purposes;
+  2. view, study, and modify the source code; and
+  3. build the Software from source for their own noncommercial use.
+
+Conditions
+
+  1. No commercial use. The Software, in original or modified form, may
+     not be used for commercial purposes. Commercial purposes include,
+     without limitation: selling the Software or access to it, bundling
+     it with a paid product or service, using it to provide paid
+     services, and use inside a for-profit product offering.
+  2. No redistribution. The Software, in original or modified form, in
+     source or binary form, may not be redistributed, republished,
+     sublicensed, sold, or made available to third parties through any
+     channel (including app stores, package repositories, and mirrors)
+     without prior written permission from the copyright holder. Official
+     distribution happens only through channels operated by the copyright
+     holder.
+  3. This notice must be retained in all copies of the Software and of
+     substantial portions of it.
+
+Contributions
+
+By submitting a contribution (for example, a pull request) you grant the
+copyright holder a perpetual, worldwide, irrevocable, royalty-free license
+to use, modify, relicense, and distribute your contribution as part of the
+Software.
+
+Prior versions
+
+Version 1.0.0 of this Software was published under the MIT license; rights
+already granted for that version are unaffected. This license applies to
+all later versions.
+
+Disclaimer
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE. THIS SOFTWARE INTERACTS WITH BATTERY MANAGEMENT
+SYSTEMS; YOU USE IT WITH REAL BATTERIES ENTIRELY AT YOUR OWN RISK.
