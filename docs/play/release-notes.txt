@@ -1,0 +1,5 @@
+Reliability and privacy update: the stale-connection watchdog now only
+trusts real telemetry, session energy stats count correctly at slower poll
+rates, failed MOSFET commands show an error while connected, saved settings
+apply from the very first connection, stricter validation of BMS responses,
+and Android cloud backup is disabled so nothing ever leaves your device.
