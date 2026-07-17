@@ -51,4 +51,4 @@ no data about anyone.
 
 Changes to this policy will appear in this file, with the date above
 updated. Questions: open an issue at
-https://github.com/invertium/bms_app/issues.
+https://github.com/invertium/bms-dash/issues.

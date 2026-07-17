@@ -4,8 +4,9 @@ A modern Android dashboard for **JBD / Xiaoxiang smart BMS** (battery
 management systems) over Bluetooth LE — state of charge, per-cell voltages,
 live graphs, alerts, and MOSFET control in a dark, glanceable UI.
 
-Free for personal use. If it saves your pack, consider
-[buying me a coffee](https://buymeacoffee.com/invertium). ☕
+Free for personal use. If it saves your pack, consider buying me a coffee. ☕
+
+<a href="https://buymeacoffee.com/invertium"><img src="https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=⚡&slug=invertium&button_colour=F0447C&font_colour=ffffff&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00" alt="Buy me a coffee" height="40"></a>
 
 <p align="center">
   <img src="docs/screenshots/dashboard.png" width="19%" alt="Dashboard with SOC gauge and stat tiles" />
@@ -47,7 +48,7 @@ Any BMS speaking the JBD/Xiaoxiang UART-over-BLE protocol (GATT service
 
 - **Google Play** — coming soon (in testing).
 - **GitHub releases** — signed APKs on the
-  [releases page](https://github.com/invertium/bms_app/releases).
+  [releases page](https://github.com/invertium/bms-dash/releases).
 - **Build it yourself** — see [Building](#building) below.
 
 ## Safety

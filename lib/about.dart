@@ -10,7 +10,7 @@ import 'widgets.dart';
 const String supportUrl = 'https://buymeacoffee.com/invertium';
 
 /// Public home of the project.
-const String sourceUrl = 'https://github.com/invertium/bms_app';
+const String sourceUrl = 'https://github.com/invertium/bms-dash';
 
 /// Shows the app's about dialog: version, support link, source link, and the
 /// bundled open-source license notices.
