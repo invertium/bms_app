@@ -1,7 +1,8 @@
-Fixes the password prompt for protected packs never appearing: 1.2.0 only
-asked for a password if it already had one saved, so a locked pack looked
-like a dead device ("Waiting for battery data...", then disconnect). The
-app now probes every pack on connect, exactly like the vendor app does,
-and prompts when the pack says it is protected.
+Scan screen improvements from tester feedback:
 
-Unprotected packs are unaffected beyond a brief probe on connect.
+- More packs are recognized as a BMS without turning on "show all devices":
+  LLT Power names, bare module model codes (SP04S034, AP21S002, ...), and
+  any device advertising the JBD Bluetooth service, whatever its name.
+- The device list no longer reorders with every signal-strength change and
+  briefly-quiet devices no longer vanish and reappear, so the row you are
+  aiming for stays under your finger.
